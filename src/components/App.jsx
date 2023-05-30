@@ -25,26 +25,28 @@ export class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let contactExist = false;
+    const form = e.currentTarget;
+    const name = form.name.value;
+    const number = form.number.value;
 
     this.state.contacts.forEach(contact => {
       if (contact.name === e.target[0].value) {
         contactExist = true;
-        return alert(`${e.target[0].value} is already in contacts.`);
+        return alert(`${name} is already in contacts.`);
       }
     });
 
     if (contactExist) {
-      return;
+      return null;
     } else {
       const newContact = {
         id: nanoid(),
-        name: e.target[0].value,
-        number: e.target[1].value,
+        name: name,
+        number: number,
       };
 
       this.setState(prevState => prevState.contacts.push(newContact));
-      e.target[0].value = '';
-      e.target[1].value = '';
+      form.reset();
     }
   };
 
