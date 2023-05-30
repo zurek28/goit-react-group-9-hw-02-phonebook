@@ -1,13 +1,15 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import css from './ContactForm.module.css';
+
 export class ContactForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
       <>
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form className={css.form} onSubmit={handleSubmit}>
+          <label className={css.label}>
             Name
             <input
               type="text"
@@ -18,7 +20,7 @@ export class ContactForm extends Component {
             />
           </label>
 
-          <label>
+          <label className={css.label}>
             Phone
             <input
               type="tel"

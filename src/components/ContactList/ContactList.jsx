@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import css from './ContactList.module.css';
+
 export class ContactList extends Component {
   render() {
     const { contacts, filter, contactRemove } = this.props;
@@ -16,7 +18,7 @@ export class ContactList extends Component {
       return (
         <ul>
           {contacts.map(contact => (
-            <li key={contact.id}>
+            <li className={css.listItem} key={contact.id}>
               {contact.name}: {contact.number}{' '}
               <button type="button" id={contact.id} onClick={contactRemove}>
                 Delete
@@ -30,7 +32,7 @@ export class ContactList extends Component {
         <ul>
           {contacts.map(contact =>
             filterIDArray(filter).includes(contact.id) ? (
-              <li key={contact.id}>
+              <li className={css.listItem} key={contact.id}>
                 {contact.name}: {contact.number}{' '}
                 <button type="button" id={contact.id} onClick={contactRemove}>
                   Delete
