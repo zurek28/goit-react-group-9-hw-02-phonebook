@@ -24,7 +24,7 @@ export class App extends Component {
     e.preventDefault();
     let contactExist = false;
 
-    this.state.contacts.map(contact => {
+    this.state.contacts.forEach(contact => {
       if (contact.name === e.target[0].value) {
         contactExist = true;
         return alert(`${e.target[0].value} is already in contacts.`);
@@ -72,7 +72,7 @@ export class App extends Component {
   contactRemove = e => {
     e.preventDefault();
 
-    this.state.contacts.map((contact, index) => {
+    this.state.contacts.forEach((contact, index) => {
       if (contact.id === e.target.id) {
         this.setState(this.state.contacts.splice(index, 1));
       }
