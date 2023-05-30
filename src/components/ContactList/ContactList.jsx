@@ -1,0 +1,54 @@
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export class ContactList extends Component {
+  render() {
+    const { contacts, filter, contactRemove } = this.props;
+
+    const filterIDArray = filter => {
+      if (filter !== '' || filter !== undefined) {
+        const filterIDArray = filter.split(', ');
+        return filterIDArray;
+      }
+    };
+
+    if (filter === '') {
+      return (
+        <ul>
+          {contacts.map(contact => (
+            <li key={contact.id}>
+              {contact.name}: {contact.number}{' '}
+              <button type="button" id={contact.id} onClick={contactRemove}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      );
+    } else if (filterIDArray(filter) !== ['']) {
+      return (
+        <ul>
+          {contacts.map(contact =>
+            filterIDArray(filter).includes(contact.id) ? (
+              <li key={contact.id}>
+                {contact.name}: {contact.number}{' '}
+                <button type="button" id={contact.id} onClick={contactRemove}>
+                  Delete
+                </button>
+              </li>
+            ) : null
+          )}
+        </ul>
+      );
+    }
+  }
+}
+
+ContactList.propTypes = {
+  contacts: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+  }),
+  filter: PropTypes.string,
+};
