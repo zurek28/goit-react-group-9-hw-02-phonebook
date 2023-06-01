@@ -5,10 +5,10 @@ import css from './ContactForm.module.css';
 
 export class ContactForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
     return (
       <>
-        <form className={css.form} onSubmit={handleSubmit}>
+        <form className={css.form} onSubmit={onSubmit}>
           <label className={css.label}>
             Name
             <input

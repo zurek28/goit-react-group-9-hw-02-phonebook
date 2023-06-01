@@ -5,13 +5,13 @@ import css from './Filter.module.css';
 
 export class Filter extends Component {
   render() {
-    const { handleChange } = this.props;
+    const { onFilterChange } = this.props;
     return (
       <>
         <form className={css.form}>
           <label className={css.label}>
             Search contact
-            <input type="text" name="filter" onChange={handleChange} />
+            <input type="text" name="filter" onChange={onFilterChange} />
           </label>
         </form>
       </>
@@ -20,5 +20,5 @@ export class Filter extends Component {
 }
 
 Filter.ptopTypes = {
-  handleChange: PropTypes.func,
+  onFilterChange: PropTypes.func,
 };

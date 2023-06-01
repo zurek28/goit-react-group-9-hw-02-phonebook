@@ -24,30 +24,30 @@ export class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let contactExist = false;
+    let isContactExist;
     const form = e.currentTarget;
     const name = form.name.value;
     const number = form.number.value;
 
     this.state.contacts.forEach(contact => {
       if (contact.name === e.target[0].value) {
-        contactExist = true;
+        isContactExist = true;
         return alert(`${name} is already in contacts.`);
       }
     });
 
-    if (contactExist) {
+    if (isContactExist) {
       return null;
-    } else {
-      const newContact = {
+    }
+
+    this.setState(prevState =>
+      prevState.contacts.push({
         id: nanoid(),
         name: name,
         number: number,
-      };
-
-      this.setState(prevState => prevState.contacts.push(newContact));
-      form.reset();
-    }
+      })
+    );
+    form.reset();
   };
 
   filter = e => {
@@ -87,14 +87,14 @@ export class App extends Component {
     return (
       <div className={css.wrapper}>
         <h1>Phonebook</h1>
-        <ContactForm handleSubmit={this.handleSubmit} />
+        <ContactForm onSubmit={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        <Filter handleChange={this.filter} />
+        <Filter onFilterChange={this.filter} />
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
-          contactRemove={this.contactRemove}
+          onContactRemove={this.contactRemove}
         />
       </div>
     );

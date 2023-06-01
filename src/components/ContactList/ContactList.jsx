@@ -5,7 +5,7 @@ import css from './ContactList.module.css';
 
 export class ContactList extends Component {
   render() {
-    const { contacts, filter, contactRemove } = this.props;
+    const { contacts, filter, onContactRemove } = this.props;
 
     const filterIDArray = filter => {
       if (filter !== '' || filter !== undefined) {
@@ -20,7 +20,7 @@ export class ContactList extends Component {
           {contacts.map(contact => (
             <li className={css.listItem} key={contact.id}>
               {contact.name}: {contact.number}{' '}
-              <button type="button" id={contact.id} onClick={contactRemove}>
+              <button type="button" id={contact.id} onClick={onContactRemove}>
                 Delete
               </button>
             </li>
@@ -34,7 +34,7 @@ export class ContactList extends Component {
             filterIDArray(filter).includes(contact.id) ? (
               <li className={css.listItem} key={contact.id}>
                 {contact.name}: {contact.number}{' '}
-                <button type="button" id={contact.id} onClick={contactRemove}>
+                <button type="button" id={contact.id} onClick={onContactRemove}>
                   Delete
                 </button>
               </li>
