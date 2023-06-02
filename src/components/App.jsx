@@ -61,7 +61,7 @@ export class App extends Component {
     this.setState({ filter: '' });
 
     this.state.contacts.forEach(contact => {
-      if (contact.name.toLowerCase().includes(filterValue)) {
+      if (contact.name.toLowerCase().includes(filterValue.toLowerCase())) {
         return this.setState(prevState => {
           if (prevState.filter === '') {
             prevState.filter = contact.id;

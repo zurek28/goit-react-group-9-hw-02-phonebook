@@ -8,7 +8,7 @@ export class ContactList extends Component {
     const { contacts, filter, onContactRemove } = this.props;
 
     const filterIDArray = filter => {
-      if (filter !== '' || filter !== undefined) {
+      if (filter !== undefined) {
         const filterIDArray = filter.split(', ');
         return filterIDArray;
       }
